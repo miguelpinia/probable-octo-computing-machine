@@ -1,5 +1,6 @@
 #+title: Mi Proyecto
 #+author: Miguel Piña
+#+author: D. Vega
 #+date: [2019-02-19 mar 15:09]
 
 Este es un ejemplo de descripción para mi primer proyecto en git. Seguro
@@ -17,6 +18,12 @@ mvn clean install
 #+begin_src java
 public void main(String args[]) {
    System.out.println("Holi");
+}
+#+end_src
+
+#+begin_src java
+public void main(String args[]) {
+   System.out.println("HOLA MUNDO");
 }
 #+end_src
 
