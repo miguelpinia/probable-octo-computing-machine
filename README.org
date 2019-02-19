@@ -6,6 +6,14 @@ Este es un ejemplo de descripción para mi primer proyecto en git. Seguro
 contendrá el modo de uso y un proyecto en Maven
 
 * ¿Cómo compilar el proyecto?
+
+El proyecto se compila haciendo:
+
+#+begin_src sh
+mvn clean install
+#+end_src
+
+
 ** Como configurar la base de datos
 ** ¿Qué dependencias son necesarias?
 * Estilo de codificación
