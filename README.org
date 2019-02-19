@@ -14,6 +14,12 @@ mvn clean install
 #+end_src
 
 
+#+begin_src java
+public void main(String args[]) {
+   System.out.println("Holi");
+}
+#+end_src
+
 ** Como configurar la base de datos
 ** ¿Qué dependencias son necesarias?
 * Estilo de codificación
