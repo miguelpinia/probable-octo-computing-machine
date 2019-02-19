@@ -1,0 +1,12 @@
+#+title: Mi Proyecto
+#+author: Miguel Piña
+#+date: [2019-02-19 mar 15:09]
+
+Este es un ejemplo de descripción para mi primer proyecto en git. Seguro
+contendrá el modo de uso y un proyecto en Maven
+
+* ¿Cómo compilar el proyecto?
+** Como configurar la base de datos
+** ¿Qué dependencias son necesarias?
+* Estilo de codificación
+* Gotchas
