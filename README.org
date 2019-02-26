@@ -28,6 +28,18 @@ public void main(String args[]) {
 #+end_src
 
 ** Como configurar la base de datos
+Inicie sesión en la línea de comandos de MySQL. El comando podría ser parecido al siguiente ejemplo:
+#+begin_src sql
+mysql -u username -ppassword
+#+end_src
+
+Para username, especifique el nombre de usuario de MySQL. El nombre de usuario predeterminado es root. Para password, especifique la contraseña del nombre de usuario. La cuenta predeterminada no tiene contraseña; en este caso, omita el distintivo -p y la contraseña. No hay espacio entre el distintivo -p y la contraseña.
+Cree una base de datos. 
+Cierre la sesión de la línea de mandatos de MySQL.
+Obtenga el controlador JDBC de MySQL. El archivo JAR JBDC se incluye entre los archivos de instalación. El controlador es exclusivo para la edición que se utiliza.
+
+Cuando haya varios controladores disponibles, deberá consultar al proveedor de base de datos para determinar qué controlador debe utilizarse. La versión del controlador JDBC que debe utilizarse dependerá de la versión de la base de datos y la versión de Java utilizadas por el servidor de IBM UrbanCode Deploy.
+
 ** ¿Qué dependencias son necesarias?
 * Estilo de codificación
 * Gotchas
