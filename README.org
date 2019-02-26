@@ -24,6 +24,8 @@ public void main(String args[]) {
 #+begin_src java
 public void main(String args[]) {
    System.out.println("HOLA MUNDO");
+   System.out.println("HOLA MUNDO");
+   System.out.println("HOLA MUNDO");
 }
 #+end_src
 
