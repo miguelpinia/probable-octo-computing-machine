@@ -43,6 +43,29 @@
       <artifactId>primefaces</artifactId>
       <version>6.0</version>
     </dependency>
+    <!-- Agrega la dependencia a Hibernate -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.4-1200-jdbc41</version>
+    </dependency>
+    <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.1.16.Final</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+          </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>5.1.16.Final</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
