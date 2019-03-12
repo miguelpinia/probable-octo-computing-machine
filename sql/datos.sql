@@ -5,11 +5,12 @@ create schema datos;
 
 
 drop table if exists datos.user;
+
 create table datos.user (
   id serial primary key,
-  name text not null,
-  created_by text not null,
-  created_date date not null
+  nombre text not null,
+  correo text not null,
+  contrasena text not null
 );
 
 commit;

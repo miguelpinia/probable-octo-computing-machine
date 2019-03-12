@@ -1,6 +1,6 @@
 package com.miguel.proyecto.web;
 
-public class Usuario {
+public class User {
 
     private String usuario;
     private String contraseña;

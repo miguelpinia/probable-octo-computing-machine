@@ -1,7 +1,5 @@
 package com.miguel.modelo;
 
-import java.util.Date;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(catalog = "test", schema = "datos", name = "user")
@@ -20,14 +19,17 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nombre")
+    private String nombre;
 
-    @Column(name = "created_by")
-    private String createdBy;
+    @Column(name = "correo")
+    private String correo;
 
-    @Column(name = "created_date")
-    private Date createdDate;
+    @Column(name = "contrasena")
+    private String contrasena;
+
+    @Transient
+    private String confirmaContrasena;
 
     public int getId() {
         return id;
@@ -37,27 +39,36 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
+
+    public String getConfirmaContrasena() {
+        return confirmaContrasena;
+    }
+
+    public void setConfirmaContrasena(String confirmaContrasena) {
+        this.confirmaContrasena = confirmaContrasena;
+    }
+
 }

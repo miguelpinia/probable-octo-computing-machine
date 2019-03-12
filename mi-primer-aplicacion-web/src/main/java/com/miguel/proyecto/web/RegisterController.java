@@ -7,20 +7,21 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import com.miguel.modelo.User;
 import com.miguel.modelo.Utility;
 
 @ManagedBean
 @RequestScoped
 public class RegisterController {
 
-    private Usuario user = new Usuario();
+    private User user = new User();
     private Utility u = new Utility();
 
-    public Usuario getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Usuario user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -31,17 +32,17 @@ public class RegisterController {
     }
 
     public String addUser() {
-        if (!user.getContraseña().equals(user.getConfirmacionContraseña())) {
+        if (!user.getContrasena().equals(user.getConfirmaContrasena())) {
             FacesContext.getCurrentInstance()
                     .addMessage(null,
-                             new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                                     "Fallo de registro: Las contraseñas deben coincidir", ""));
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                    "Fallo de registro: Las contraseñas deben coincidir", ""));
         } else {
             FacesContext.getCurrentInstance()
                     .addMessage(null,
-                             new FacesMessage(FacesMessage.SEVERITY_INFO,
-                                     "Felicidades, el registro se ha realizado correctamente", ""));
-            u.save();
+                            new FacesMessage(FacesMessage.SEVERITY_INFO,
+                                    "Felicidades, el registro se ha realizado correctamente", ""));
+            u.save(user);
             user = null;
         }
         return null;

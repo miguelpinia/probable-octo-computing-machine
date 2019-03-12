@@ -5,9 +5,6 @@
  */
 package com.miguel.modelo;
 
-import java.util.Date;
-import java.util.Random;
-
 import org.hibernate.Session;
 
 /**
@@ -19,25 +16,11 @@ public class Utility {
     static User userObj;
     static Session sessionObj;
 
-    public void save() {
-        Random r = new Random();
-        System.out.println(".......Hibernate Maven Example.......\n");
+    public void save(User usuario) {
         try {
             sessionObj = HibernateUtil.getSessionFactory().openSession();
-            System.out.println("Sssion " + sessionObj);
             sessionObj.beginTransaction();
-
-            for (int i = 101; i <= 105; i++) {
-                userObj = new User();
-                userObj.setName("Editor " + r.nextInt());
-                userObj.setCreatedBy("Administrator");
-                userObj.setCreatedDate(new Date());
-
-                sessionObj.save(userObj);
-            }
-            System.out.println("\n.......Records Saved Successfully To The Database.......\n");
-
-            // Committing The Transactions To The Database
+            sessionObj.save(usuario);
             sessionObj.getTransaction().commit();
         } catch (Exception sqlException) {
             if (null != sessionObj.getTransaction()) {
