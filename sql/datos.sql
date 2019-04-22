@@ -33,6 +33,7 @@ create table mapita.usuario (
   nombre text unique not null,
   correo text unique not null,
   password text not null,
+  fotografia bytea,
   constraint email_valido check (correo ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
 );
 
