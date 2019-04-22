@@ -15,8 +15,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.Lob;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -29,12 +30,11 @@ import javax.persistence.UniqueConstraint;
 @Table(catalog = "test", schema = "mapita", name = "usuario", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"correo"})
     , @UniqueConstraint(columnNames = {"nombre"})})
-@NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
-    , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")
-    , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
-    , @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo")
-    , @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password")})
+@NamedNativeQueries({
+    @NamedNativeQuery(name = "Usuario.findByNombrePassword",
+            query = "select * from mapita.obten_usuario(:nombre, :password)",
+            resultClass = Usuario.class)
+})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +52,8 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false, length = 2147483647)
     private String password;
+    @Lob
+    private byte[] fotografia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioId")
     private List<UsuarioRol> usuarioRolList;
 
@@ -107,6 +109,14 @@ public class Usuario implements Serializable {
 
     public void setUsuarioRolList(List<UsuarioRol> usuarioRolList) {
         this.usuarioRolList = usuarioRolList;
+    }
+
+    public byte[] getFotografia() {
+        return fotografia;
+    }
+
+    public void setFotografia(byte[] fotografia) {
+        this.fotografia = fotografia;
     }
 
     @Override

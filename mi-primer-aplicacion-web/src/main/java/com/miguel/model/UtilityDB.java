@@ -5,19 +5,26 @@
  */
 package com.miguel.model;
 
-import com.miguel.model.HibernateUtil;
 import com.miguel.modelo.User;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
  *
  * @author miguel
  */
-public class Utility {
+public class UtilityDB {
 
-    static User userObj;
     static Session sessionObj;
+
+    public Usuario obtenUsuario(String nombre, String password) {
+        sessionObj = HibernateUtil.getSessionFactory().openSession();
+        Query query = sessionObj.getNamedQuery("Usuario.findByNombrePassword");
+        query.setParameter("nombre", nombre).setParameter("password", password);
+        Usuario usuario = (Usuario) query.uniqueResult();
+        return usuario;
+    }
 
     public void save(User usuario) {
         try {

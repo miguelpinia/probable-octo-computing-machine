@@ -8,14 +8,14 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import com.miguel.modelo.User;
-import com.miguel.model.Utility;
+import com.miguel.model.UtilityDB;
 
 @ManagedBean
 @RequestScoped
 public class RegisterController {
 
     private User user = new User();
-    private Utility u = new Utility();
+    private UtilityDB u = new UtilityDB();
 
     public User getUser() {
         return user;
