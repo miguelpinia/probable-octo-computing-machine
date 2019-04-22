@@ -8,7 +8,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import com.miguel.modelo.User;
-import com.miguel.modelo.Utility;
+import com.miguel.model.Utility;
 
 @ManagedBean
 @RequestScoped

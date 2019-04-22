@@ -17,6 +17,13 @@
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
  
         <!-- Mapping With Model Class Containing Annotations -->
-        <mapping class="com.miguel.modelo.User" />
+        <mapping class="com.miguel.model.Color" />
+        <mapping class="com.miguel.model.Comentario" />
+        <mapping class="com.miguel.model.ListaComentario" />
+        <mapping class="com.miguel.model.Marcador" />
+        <mapping class="com.miguel.model.Rol" />
+        <mapping class="com.miguel.model.Tema" />
+        <mapping class="com.miguel.model.Usuario" />
+        <mapping class="com.miguel.model.UsuarioRol" />
     </session-factory>
 </hibernate-configuration>
