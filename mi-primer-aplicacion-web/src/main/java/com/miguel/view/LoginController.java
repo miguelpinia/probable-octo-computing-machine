@@ -15,9 +15,6 @@ import com.miguel.model.UtilityDB;
 @ManagedBean
 public class LoginController {
 
-    private static final String INICIO = "secured/inicio?faces-redirect=true";
-    private static final String INDEX = "index?faces-redirect=true";
-
     private String usuario;
     private String contraseña;
     private final UtilityDB utility;
@@ -28,13 +25,12 @@ public class LoginController {
 
     public String login() {
         Usuario u = utility.obtenUsuario(usuario, contraseña);
-        System.out.println("Holi\n" + u);
         if (u != null) {
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getSessionMap().put("usuario", u);
-            return INICIO;
+            return Pages.INICIO;
         }
-        return INDEX;
+        return Pages.INDEX;
     }
 
     /**
@@ -45,7 +41,7 @@ public class LoginController {
     public String logout() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().invalidateSession();
-        return INDEX;
+        return Pages.INDEX;
     }
 
     public String getUsuario() {

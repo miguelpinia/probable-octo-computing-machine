@@ -1,61 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Ejemplo de JavaServer Faces</title>
-    </h:head>
-    <h:body>
-        <h1>Formulario de registro</h1> <br/>
-        <h:form id="myForm">
-            <table>
-                <tr><td>
-                        <p:messages id="messages" autoUpdate="true" closable="true" />
-                    </td></tr>
-            </table>
-            <table>
-                <tr>
-                    <td>Nombre de usuario</td>
-                    <td><p:inputText value="#{registerController.user.nombre}"
-                                     required="true"
-                                     id="Username"
-                                     size="40"/></td>
-                </tr>
-                <tr>
-                    <td>Correo electrónico</td>
-                    <td><p:inputText value="#{registerController.user.correo}"
-                                     required="true"
-                                     id="correo"
-                                     size="40"/></td>
-                </tr>
-                <tr>
-                    <td>Contraseña</td>
-                    <td><p:password value="#{registerController.user.contrasena}"
-                                    required="true"
-                                    feedback="true"
-                                    id="Password"/></td>
-                </tr>
-                <tr>
-                    <td>Confirmar Contraseña</td>
-                    <td><p:password value="#{registerController.user.confirmaContrasena}"
-                                    required="true"
-                                    feedback="true"
-                                    id="ConfirmPassword"/></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <p:commandButton action="#{registerController.addUser}"
-                                         value="Registrar"/>
-                        <p:commandButton value="Reset"
-                                         update="myForm"
-                                         process="@this">
-                            <p:resetInput target="myForm" />
-                        </p:commandButton>
-                    </td>
-                </tr>
-            </table>
-        </h:form>
-    </h:body>
-</html>
+<ui:composition template="/WEB-INF/facelets/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <ui:define name="content">
+    <style type="text/css">
+      .ui-growl {
+          top:80px;
+      }
+    </style>
+    <div class="jumbotron">
+      <div class="container">
+        <h:form id="registroForm" enctype="multipart/form-data">
+          <p:growl id="growl" showDetail="true" sticky="true" /> 
+          <p:panel header="Registro de usuario">
+            <p:panelGrid columns="2" layout="grid" style="padding: 5px">
+              <h:outputText value="Nombre de usuario:"/>
+              <p:inputText value="#{registerController.user.nombre}"
+                           required="true"
+                           id="Username"
+                           size="40"/>
+              <h:outputText value="Correo electrónico:"/>
+              <p:inputText value="#{registerController.user.correo}"
+                           required="true"
+                           id="correo"
+                           size="40"
+                           validatorMessage="El correo no es valido">
+                <f:validateRegex pattern="[\w\.-_]*[a-zA-Z0-9_]@ciencias\.unam\.mx" />
+                <p:message for="correo" id="emailMsg"/>
+              </p:inputText>
+              <h:outputText value="Contraseña:"/>
+              <p:password value="#{registerController.user.password}"
+                          required="true"
+                          feedback="true"
+                          id="Password"
+                          match="ConfirmPassword"
+                          placeholder="Contraseña"
+                          label="Contraseña"
+                          promptLabel="Ingresa una contraseña"
+                          weakLabel="Débil"
+                          goodLabel="Buena"
+                          strongLabel="Fuerte"
+                          inline="true"/>
+              <h:outputText value="Confirmar contraseña:"/>
+              <p:password value="#{registerController.user.password}"
+                          required="true"
+                          feedback="true"
+                          inline="true"
+                          id="ConfirmPassword"
+                          placeholder="Confirmar contraseña"
+                          label="Confirmar contraseña"
+                          validatorMessage="Las contraseñas no coinciden"
+                          promptLabel="Ingresa una contraseña"
+                          weakLabel="Débil"
+                          goodLabel="Buena"
+                          strongLabel="Fuerte"/>
+              <h:outputText value="Fotografía:"/>
+              <p:fileUpload value="#{registerController.fotografia}" 
+                            mode="simple" 
+                            skinSimple="true"
+                            fileUploadListener="#{registerController.fileUploadListener}"/>
+            </p:panelGrid>
+            <p:commandButton action="#{registerController.addUser}"
+                             value="Registrar"
+                             ajax="false"/>
+            <p:commandButton value="Reset"
+                             update="myForm"
+                             process="@this"
+                             ajax="false">
+              <p:resetInput target="registroForm" />
+            </p:commandButton>
+          </p:panel>
+       </h:form>
+      </div>
+    </div>
+
+  </ui:define>
+
+</ui:composition>
+
