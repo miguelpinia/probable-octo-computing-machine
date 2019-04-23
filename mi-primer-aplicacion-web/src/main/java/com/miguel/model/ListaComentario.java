@@ -17,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,9 +26,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "lista_comentario", catalog = "test", schema = "mapita")
-@NamedQueries({
-    @NamedQuery(name = "ListaComentario.findAll", query = "SELECT l FROM ListaComentario l")
-    , @NamedQuery(name = "ListaComentario.findById", query = "SELECT l FROM ListaComentario l WHERE l.id = :id")})
 public class ListaComentario implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -34,6 +34,8 @@ create table mapita.usuario (
   correo text unique not null,
   password text not null,
   fotografia bytea,
+  activo boolean not null default false,
+  activacion char(32) not null,
   constraint email_valido check (correo ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
 );
 
@@ -66,6 +68,9 @@ drop function if exists mapita.hash();
 create or replace function mapita.hash() returns trigger as $$
   begin
     if TG_OP = 'INSERT' then
+       if new.activacion is null then
+         new.activacion = MD5(new.nombre || new.password || new.correo);
+       end if;
        new.password = crypt(new.password, gen_salt('bf', 8)::text);
     end if;
     return new;

@@ -17,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,11 +26,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(catalog = "test", schema = "mapita", name = "tema")
-@NamedQueries({
-    @NamedQuery(name = "Tema.findAll", query = "SELECT t FROM Tema t")
-    , @NamedQuery(name = "Tema.findById", query = "SELECT t FROM Tema t WHERE t.id = :id")
-    , @NamedQuery(name = "Tema.findByNombre", query = "SELECT t FROM Tema t WHERE t.nombre = :nombre")
-    , @NamedQuery(name = "Tema.findByDatos", query = "SELECT t FROM Tema t WHERE t.datos = :datos")})
 public class Tema implements Serializable {
 
     private static final long serialVersionUID = 1L;

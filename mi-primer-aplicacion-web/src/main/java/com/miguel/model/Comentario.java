@@ -15,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +23,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(catalog = "test", schema = "mapita", name = "comentario")
-@NamedQueries({
-    @NamedQuery(name = "Comentario.findAll", query = "SELECT c FROM Comentario c")
-    , @NamedQuery(name = "Comentario.findById", query = "SELECT c FROM Comentario c WHERE c.id = :id")
-    , @NamedQuery(name = "Comentario.findByComentario", query = "SELECT c FROM Comentario c WHERE c.comentario = :comentario")
-    , @NamedQuery(name = "Comentario.findByCalificacion", query = "SELECT c FROM Comentario c WHERE c.calificacion = :calificacion")})
 public class Comentario implements Serializable {
 
     private static final long serialVersionUID = 1L;

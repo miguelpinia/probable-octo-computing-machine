@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -28,11 +26,6 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(catalog = "test", schema = "mapita", name = "color", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"hex_color"})})
-@NamedQueries({
-    @NamedQuery(name = "Color.findAll", query = "SELECT c FROM Color c")
-    , @NamedQuery(name = "Color.findById", query = "SELECT c FROM Color c WHERE c.id = :id")
-    , @NamedQuery(name = "Color.findByNombre", query = "SELECT c FROM Color c WHERE c.nombre = :nombre")
-    , @NamedQuery(name = "Color.findByHexColor", query = "SELECT c FROM Color c WHERE c.hexColor = :hexColor")})
 public class Color implements Serializable {
 
     private static final long serialVersionUID = 1L;

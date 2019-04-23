@@ -15,8 +15,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -28,10 +26,6 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(catalog = "test", schema = "mapita", name = "rol", uniqueConstraints = {
     @UniqueConstraint(columnNames = {"rol"})})
-@NamedQueries({
-    @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r")
-    , @NamedQuery(name = "Rol.findById", query = "SELECT r FROM Rol r WHERE r.id = :id")
-    , @NamedQuery(name = "Rol.findByRol", query = "SELECT r FROM Rol r WHERE r.rol = :rol")})
 public class Rol implements Serializable {
 
     private static final long serialVersionUID = 1L;

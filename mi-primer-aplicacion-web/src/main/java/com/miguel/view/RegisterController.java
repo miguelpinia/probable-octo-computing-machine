@@ -1,6 +1,10 @@
 package com.miguel.view;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -17,7 +21,7 @@ import org.primefaces.model.UploadedFile;
 public class RegisterController {
 
     private Usuario user = new Usuario();
-    private UtilityDB u = new UtilityDB();
+    private final UtilityDB u = new UtilityDB();
     private String confirmacionPassword;
     private UploadedFile fotografia;
 
@@ -63,14 +67,37 @@ public class RegisterController {
             } else {
                 user.setFotografia(null);
             }
+            String nombre = user.getNombre();
+            String pass = user.getPassword();
+            String hash = md5(user.getNombre() + user.getPassword() + user.getCorreo());
+            user.setActivacion(hash);
             u.guardaUsuario(user);
             user = null;
             FacesContext.getCurrentInstance()
                     .addMessage("growl",
                             new FacesMessage(FacesMessage.SEVERITY_INFO,
                                     "Info", "Felicidades, el registro se ha realizado correctamente"));
-
+            
         }
         return Pages.REGISTRO;
+    }
+
+    public static String md5(String entrada) {
+        try {
+            char[] CONSTS_HEX = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            byte[] salida = digest.digest(entrada.getBytes());
+            StringBuilder strbCadenaMD5 = new StringBuilder(2 * salida.length);
+            for (int i = 0; i < salida.length; i++) {
+                int bajo = (int) (salida[i] & 0x0f);
+                int alto = (int) ((salida[i] & 0xf0) >> 4);
+                strbCadenaMD5.append(CONSTS_HEX[alto]);
+                strbCadenaMD5.append(CONSTS_HEX[bajo]);
+            }
+            return strbCadenaMD5.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

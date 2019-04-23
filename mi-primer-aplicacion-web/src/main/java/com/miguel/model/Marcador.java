@@ -18,8 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,11 +27,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(catalog = "test", schema = "mapita")
-@NamedQueries({
-    @NamedQuery(name = "Marcador.findAll", query = "SELECT m FROM Marcador m")
-    , @NamedQuery(name = "Marcador.findById", query = "SELECT m FROM Marcador m WHERE m.id = :id")
-    , @NamedQuery(name = "Marcador.findByDescripcion", query = "SELECT m FROM Marcador m WHERE m.descripcion = :descripcion")
-    , @NamedQuery(name = "Marcador.findByDatos", query = "SELECT m FROM Marcador m WHERE m.datos = :datos")})
 public class Marcador implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -26,6 +26,9 @@ public class LoginController {
     public String login() {
         Usuario u = utility.obtenUsuario(usuario, contraseña);
         if (u != null) {
+            if (!u.isActivo()) {
+                return Pages.INDEX;
+            }
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getSessionMap().put("usuario", u);
             return Pages.INICIO;

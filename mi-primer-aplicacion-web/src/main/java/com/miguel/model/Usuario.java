@@ -33,6 +33,10 @@ import javax.persistence.UniqueConstraint;
     @NamedNativeQuery(name = "Usuario.findByNombrePassword",
             query = "select * from mapita.obten_usuario(:nombre, :password)",
             resultClass = Usuario.class)
+    ,
+    @NamedNativeQuery(name = "Usuario.findByHash",
+            query = "select * from mapita.usuario where activacion = :hash",
+            resultClass = Usuario.class)
 })
 public class Usuario implements Serializable {
 
@@ -51,6 +55,11 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(nullable = false, length = 2147483647)
     private String password;
+    @Basic(optional = true)
+    private boolean activo;
+    @Basic(optional = true)
+    @Column(length = 32)
+    private String activacion;
     private byte[] fotografia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioId")
     private List<UsuarioRol> usuarioRolList;
@@ -115,6 +124,22 @@ public class Usuario implements Serializable {
 
     public void setFotografia(byte[] fotografia) {
         this.fotografia = fotografia;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getActivacion() {
+        return activacion;
+    }
+
+    public void setActivacion(String activacion) {
+        this.activacion = activacion;
     }
 
     @Override

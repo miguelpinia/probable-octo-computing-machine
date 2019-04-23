@@ -15,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -25,9 +23,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "usuario_rol", catalog = "test", schema = "mapita")
-@NamedQueries({
-    @NamedQuery(name = "UsuarioRol.findAll", query = "SELECT u FROM UsuarioRol u")
-    , @NamedQuery(name = "UsuarioRol.findById", query = "SELECT u FROM UsuarioRol u WHERE u.id = :id")})
 public class UsuarioRol implements Serializable {
 
     private static final long serialVersionUID = 1L;
