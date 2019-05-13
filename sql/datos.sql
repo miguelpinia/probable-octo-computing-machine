@@ -99,10 +99,10 @@ create or replace function mapita.obten_usuario(usuario text, contraseña text) 
   where usuario = usuario and password = crypt(contraseña, password)
 $$ language sql stable;
 
-insert into mapita.usuario (nombre, password, correo)
-values ('Miguel', 'contraseña', 'miguel_pinia@ciencias.unam.mx'),
-       ('Olga', 'micontraseña', 'olga@mail.com'),
-       ('Juan', 'password', 'juan@mail.com');
+insert into mapita.usuario (nombre, password, correo, activo)
+values ('Miguel', 'contraseña', 'miguel_pinia@ciencias.unam.mx', true),
+       ('Olga', 'micontraseña', 'olga@mail.com', true),
+       ('Juan', 'password', 'juan@mail.com', true);
 
 insert into mapita.usuario_rol (usuario_id, rol_id)
 values (1, 1),
