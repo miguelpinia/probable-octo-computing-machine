@@ -17,6 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,6 +28,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(catalog = "test", schema = "mapita", name = "tema")
+@NamedQueries(
+        @NamedQuery(name = "Tema.findTemas", query = "SELECT t from Tema t")
+)
 public class Tema implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -121,7 +126,7 @@ public class Tema implements Serializable {
 
     @Override
     public String toString() {
-        return "com.miguel.model.Tema[ id=" + id + " ]";
+        return nombre;
     }
 
 }

@@ -104,4 +104,35 @@ public class UtilityDB {
         }
     }
 
+    public List<Tema> obtenTemas() {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Tema.findTemas");
+            return query.list();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public void guardaMarcador(Marcador m) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(m);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (null != session.getTransaction()) {
+                System.out.println("\n.......Transaction (Insert marker) Is Being Rolled Back.......");
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
 }

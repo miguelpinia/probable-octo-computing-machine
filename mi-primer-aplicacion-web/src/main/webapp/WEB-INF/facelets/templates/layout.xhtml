@@ -11,6 +11,8 @@
     <title>Mapita</title>
 
     <h:outputStylesheet library="webjars" name="bootstrap/4.0.0-2/css/bootstrap.min-jsf.css" />
+    <h:outputStylesheet library="css" name="style.css"  />
+    <h:outputScript library="js" name="markers.js"/>
 
 </h:head>
 <h:body>
@@ -21,8 +23,6 @@
         <ui:include src="./footer.xhtml" />
     </div>
 
-    <!-- Los dejamos hasta abajo para que cargue la página más rápido-->
-    <h:outputScript library="webjars" name="jquery/3.3.1-1/jquery.min.js"/>
     <h:outputScript library="webjars" name="bootstrap/4.0.0-2/js/bootstrap.min.js" />
 
 </h:body>
