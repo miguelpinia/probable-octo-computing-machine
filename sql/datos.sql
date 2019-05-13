@@ -143,12 +143,13 @@ create table mapita.marcador (
   tema_id integer not null references mapita.tema(id),
   descripcion text not null,
   datos text not null,
-  ubicacion point not null
+  latitud float not null,
+  longitud float not null
 );
 
-insert into mapita.marcador (tema_id, descripcion, datos, ubicacion)
-values (3, 'Gimnasio de casa popular', 'Gimnasio ubicado en la Magdalena Contreras', '(19.322930, -99.221742)'),
-       (3, 'Gimnasio de alberca olímpica', 'Gimnasio ubicado a un costado de la alberca olímpica de la UNAM', '(19.330626, -99.185229)');
+insert into mapita.marcador (tema_id, descripcion, datos, latitud, longitud)
+values (3, 'Gimnasio de casa popular', 'Gimnasio ubicado en la Magdalena Contreras', 19.322930, -99.221742),
+       (3, 'Gimnasio de alberca olímpica', 'Gimnasio ubicado a un costado de la alberca olímpica de la UNAM', 19.330626, -99.185229);
 
 create table mapita.lista_comentario (
   id serial primary key,

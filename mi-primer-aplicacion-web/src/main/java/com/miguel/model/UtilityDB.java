@@ -7,6 +7,7 @@ package com.miguel.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -84,6 +85,18 @@ public class UtilityDB {
             query.setParameter("hash", hash);
             Usuario usuario = (Usuario) query.uniqueResult();
             return usuario;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+    public List<Marcador> obtenMarcadores() {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Marcador.findMarcadores");
+            return query.list();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

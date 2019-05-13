@@ -16,8 +16,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +28,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(catalog = "test", schema = "mapita")
+@NamedQueries(
+        @NamedQuery(name = "Marcador.findMarcadores", query = "SELECT m FROM Marcador m")
+)
 public class Marcador implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,9 +46,11 @@ public class Marcador implements Serializable {
     @Column(nullable = false, length = 2147483647)
     private String datos;
     @Basic(optional = false)
-    @Lob
     @Column(nullable = false)
-    private Object ubicacion;
+    private Double latitud;
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private Double longitud;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "marcadorId")
     private List<ListaComentario> listaComentarioList;
     @JoinColumn(name = "tema_id", referencedColumnName = "id", nullable = false)
@@ -58,11 +64,12 @@ public class Marcador implements Serializable {
         this.id = id;
     }
 
-    public Marcador(Integer id, String descripcion, String datos, Object ubicacion) {
+    public Marcador(Integer id, String descripcion, String datos, Double latitud, Double longitud) {
         this.id = id;
         this.descripcion = descripcion;
         this.datos = datos;
-        this.ubicacion = ubicacion;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public Integer getId() {
@@ -89,14 +96,6 @@ public class Marcador implements Serializable {
         this.datos = datos;
     }
 
-    public Object getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(Object ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
     public List<ListaComentario> getListaComentarioList() {
         return listaComentarioList;
     }
@@ -111,6 +110,22 @@ public class Marcador implements Serializable {
 
     public void setTemaId(Tema temaId) {
         this.temaId = temaId;
+    }
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
 
     @Override
