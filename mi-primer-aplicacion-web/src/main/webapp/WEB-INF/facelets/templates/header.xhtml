@@ -3,73 +3,47 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
-  <nav class="navbar navbar-expand-md navbar-light fixed-top"
-       style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="index.xhtml">
-        Mapita
-    </a>
-    <button class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"/>
-    </button>
-    <div class="collapse navbar-collapse">
-      <div class="navbar-nav ml-auto">
-        <c:choose>
-          <c:when test="#{userBean.logged}">
-            <div class="my-2 my-lg-0">
-                <p:graphicImage value="#{userBean.fotografia}"
-                              width="48"
-                              height="48"/>
-              <button class="btn btn-primary"
-                      style="height:48px;">
-                <i class="fa fa-sign-in"
-                   aria-hidden="true"/>
-                #{userBean.usuario.nombre}
-              </button>
-            </div>
-            <div class ="my-2 my-lg-0">
-              <h:form id="exit">
-                <h:commandButton action="#{loginController.logout()}"
-                                 value="Cerrar Sesión"
-                                 class="btn btn-outline-success my-2 my-sm-0"
-                                 style="height:48px;"/>
-              </h:form>
-            </div>
-          </c:when>
-          <c:otherwise>
-            <h:form id="myForm" class="form-inline my-2 my-lg-0">
-              <p:growl id="loginGrowl" for="loginGrowl" showDetail="true"/>
-              <h:inputText value="#{loginController.usuario}"
+
+  <b:navBar brand="Mapita" fixed="top" sticky="true" class="navbar-logo">
+    <div class="navbar-nav navbar-right">
+      <c:choose>
+        <c:when test="#{userBean.logged}">
+          <b:form id="exit" inline="true" style="margin-top: 8px;">
+            <p:graphicImage value="#{userBean.fotografia}"
+                            width="48"
+                            height="48"/>
+            <b:button look="primary" value="#{userBean.usuario.nombre}"/>
+            <b:commandButton action="#{loginController.logout()}"
+                             value="Cerrar Sesión"/>
+          </b:form>
+        </c:when>
+        <c:otherwise>
+          <b:form inline="true" style="margin-top: 8px;">
+            <b:growl id="growlMsg" globalOnly="true" placementFrom="bottom"
+                     show-detail="true" show-summary="false" allowDismiss="true"
+                     delay="10000" escape="true"/>
+            <b:inputText value="#{loginController.usuario}"
+                         required="true"
+                         id="Username"
+                         size="15"
+                         placeholder="Correo Electrónico"/>
+
+            <b:inputSecret value="#{loginController.contraseña}"
                            required="true"
-                           id="Username"
+                           id="Password"
                            size="15"
-                           class="form-control mr-sm-2"
-                           a:placeholder="Correo Electrónico"/>
+                           placeholder="Contraseña"/>
+            <b:commandButton action="#{loginController.login}"
+                             value="Inicia Sesión"
+                             class="btn btn-outline-success my-2 my-sm-0"/>
+          </b:form>
 
-              <h:inputSecret value="#{loginController.contraseña}"
-                             required="true"
-                             id="Password"
-                             class="form-control mr-sm-2"
-                             a:placeholder="Contraseña"/>
-
-              <h:commandButton action="#{loginController.login}"
-                               value="Inicia Sesión"
-                               class="btn btn-outline-success my-2 my-sm-0"/>
-
-            </h:form>
-          </c:otherwise>
-        </c:choose>
-      </div>
+        </c:otherwise>
+      </c:choose>
     </div>
-
-  </nav>
+  </b:navBar>
 </ui:composition>
 

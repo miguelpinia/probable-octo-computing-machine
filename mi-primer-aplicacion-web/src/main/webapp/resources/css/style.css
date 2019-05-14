@@ -7,20 +7,20 @@ and open the template in the editor.
     Created on : 13/05/2019, 06:32:03 PM
     Author     : miguel
 */
-
+/*
 body { 
     padding-top: 65px; 
 }
 
 .ui-growl {
     padding-top: 65px;
-}
+}*/
 
-.ui-selectonemenu {
+/*.ui-selectonemenu {
     padding-right: 0 !important;
 }
 
 .ui-selectonemenu .ui-selectonemenu-trigger {
     width: auto !important;
-}
+}*/
 
