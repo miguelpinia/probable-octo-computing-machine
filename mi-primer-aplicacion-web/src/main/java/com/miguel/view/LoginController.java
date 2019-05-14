@@ -1,5 +1,7 @@
 package com.miguel.view;
 
+import java.io.IOException;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -50,10 +52,11 @@ public class LoginController {
      *
      * @return La página de inicio.
      */
-    public String logout() {
+    public void logout() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().invalidateSession();
-        return Pages.INDEX;
+        context.getExternalContext().redirect(Pages.INDEX);
+        return;
     }
 
     public String getUsuario() {

@@ -11,8 +11,8 @@ package com.miguel.view;
  */
 public class Pages {
 
-    public static final String INICIO = "secured/inicio?faces-redirect=true";
-    public static final String INDEX = "index?faces-redirect=true";
-    public static final String REGISTRO = "registro?faces-redirect=true";
+    public static final String INICIO = "secured/inicio.xhtml?faces-redirect=true";
+    public static final String INDEX = "index.xhtml?faces-redirect=true";
+    public static final String REGISTRO = "registro.xhtml?faces-redirect=true";
 
 }
