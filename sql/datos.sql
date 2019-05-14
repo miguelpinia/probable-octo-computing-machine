@@ -141,7 +141,7 @@ values (1, 'Campo de futbol', 'Información sobre los campos de futbol conocidos
 create table mapita.marcador (
   id serial primary key,
   tema_id integer not null references mapita.tema(id),
-  descripcion text not null,
+  descripcion text not null unique,
   datos text not null,
   latitud float not null,
   longitud float not null

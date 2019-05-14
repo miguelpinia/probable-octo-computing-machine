@@ -148,4 +148,16 @@ public class UtilityDB {
         }
     }
 
+    public void eliminaMarcadorPorTitulo(String titulo) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query q = session.createQuery("delete from Marcador where descripcion = :descripcion").setParameter("descripcion", titulo);
+            q.executeUpdate();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
 }
