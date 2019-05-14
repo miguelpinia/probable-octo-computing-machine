@@ -58,9 +58,14 @@ public class RegisterController {
     public String addUser() {
         if (!user.getPassword().equals(confirmacionPassword)) {
             FacesContext.getCurrentInstance()
-                    .addMessage("growl",
+                    .addMessage("registroForm:growl",
                             new FacesMessage(FacesMessage.SEVERITY_ERROR,
                                     "Error!", "Fallo de registro: Las contraseñas deben coincidir"));
+        } else if (u.existeCorreo(user.getCorreo())) {
+            FacesContext.getCurrentInstance()
+                    .addMessage("registroForm:growl",
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                    "Error!", "El correo ya ha sido registrado."));
         } else {
             if (fotografia != null) {
                 user.setFotografia(fotografia.getContents());
@@ -77,7 +82,7 @@ public class RegisterController {
                     .addMessage("growl",
                             new FacesMessage(FacesMessage.SEVERITY_INFO,
                                     "Info", "Felicidades, el registro se ha realizado correctamente"));
-            
+
         }
         return Pages.REGISTRO;
     }

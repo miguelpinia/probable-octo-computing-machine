@@ -135,4 +135,17 @@ public class UtilityDB {
         }
     }
 
+    public boolean existeCorreo(String correo) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query q = session.createSQLQuery("select correo from mapita.usuario where correo = ?");
+            q.setParameter(0, correo);
+            return q.uniqueResult() != null;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
 }

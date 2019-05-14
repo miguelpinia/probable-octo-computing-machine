@@ -39,7 +39,7 @@ public class SessionFilter implements Filter {
         HttpSession session = req.getSession(false);
         String pageRequest = req.getRequestURL().toString();
 
-        if (session != null && session.getAttribute("usuario") == null) {
+        if ((session != null && session.getAttribute("usuario") == null) || session == null) {
             res.sendRedirect(req.getContextPath() + "/index.xhtml");
             return;
         }

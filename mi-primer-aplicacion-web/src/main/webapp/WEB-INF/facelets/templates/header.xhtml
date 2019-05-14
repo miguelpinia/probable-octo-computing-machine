@@ -6,17 +6,17 @@
                 xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
   <!-- Main jumbotron for a primary marketing message or call to action -->
-  <nav class="navbar navbar-expand-md navbar-light fixed-top" 
+  <nav class="navbar navbar-expand-md navbar-light fixed-top"
        style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="index.xhtml">
         Mapita
     </a>
-    <button class="navbar-toggler" 
-            type="button" 
-            data-toggle="collapse" 
-            data-target="#navbarsExampleDefault" 
-            aria-controls="navbarsExampleDefault" 
-            aria-expanded="false" 
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault"
+            aria-expanded="false"
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"/>
     </button>
@@ -25,12 +25,12 @@
         <c:choose>
           <c:when test="#{userBean.logged}">
             <div class="my-2 my-lg-0">
-                <p:graphicImage value="#{userBean.fotografia}" 
-                              width="48" 
+                <p:graphicImage value="#{userBean.fotografia}"
+                              width="48"
                               height="48"/>
-              <button class="btn btn-primary" 
+              <button class="btn btn-primary"
                       style="height:48px;">
-                <i class="fa fa-sign-in" 
+                <i class="fa fa-sign-in"
                    aria-hidden="true"/>
                 #{userBean.usuario.nombre}
               </button>
@@ -46,15 +46,16 @@
           </c:when>
           <c:otherwise>
             <h:form id="myForm" class="form-inline my-2 my-lg-0">
+              <p:growl id="loginGrowl" for="loginGrowl" showDetail="true"/>
               <h:inputText value="#{loginController.usuario}"
-                           required="true" 
+                           required="true"
                            id="Username"
-                           size="15" 
+                           size="15"
                            class="form-control mr-sm-2"
                            a:placeholder="Correo Electrónico"/>
 
               <h:inputSecret value="#{loginController.contraseña}"
-                             required="true" 
+                             required="true"
                              id="Password"
                              class="form-control mr-sm-2"
                              a:placeholder="Contraseña"/>

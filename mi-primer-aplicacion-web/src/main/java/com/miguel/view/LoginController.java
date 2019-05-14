@@ -1,5 +1,6 @@
 package com.miguel.view;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -27,12 +28,20 @@ public class LoginController {
         Usuario u = utility.obtenUsuario(usuario, contraseña);
         if (u != null) {
             if (!u.isActivo()) {
+                FacesContext.getCurrentInstance()
+                        .addMessage("loginGrowl",
+                                new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                        "Error!", "Verificar correo de validación"));
                 return Pages.INDEX;
             }
             FacesContext context = FacesContext.getCurrentInstance();
             context.getExternalContext().getSessionMap().put("usuario", u);
             return Pages.INICIO;
         }
+        FacesContext.getCurrentInstance()
+                .addMessage("loginGrowl",
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                                "Error!", "Error al iniciar sesión, verificar usuario y/o contraseña"));
         return Pages.INDEX;
     }
 
